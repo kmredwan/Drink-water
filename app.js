@@ -5,13 +5,19 @@ const remainder = document.getElementById("remainder")
 
 updateBigCup()
 
+
 allSmallCups.forEach((cup,idx)=>{
-    cup.addEventListener("click", ()=> highlightCups(idx))
-})
+
+    cup.addEventListener("click",  ()=> {
+  
+        highlightCups(idx)
+    } )
+    })
 
 function highlightCups(idx){
-    if(idx===7 && allSmallCups[idx].classList.contains('full')) idx-- ;
-    else(idx===7 && allSmallCups[idx].classList.contains('full') && !allSmallCups[idx].nextElementSibling.classList.contains("full"));{
+    if (idx===7 && allSmallCups[idx].classList.contains("full")) idx--;
+    
+    else if(allSmallCups[idx].classList.contains('full') && !allSmallCups[idx].nextElementSibling.classList.contains('full')){
         idx--
     }
     
@@ -31,6 +37,8 @@ function highlightCups(idx){
 function  updateBigCup(){
     fullCups = document.querySelectorAll('.cup-small.full').length;
     totalCups = allSmallCups.length;
+    console.log(totalCups)
+    console.log(fullCups)
 
     if(fullCups === 0){
         percentage.style.visibility = 'hidden'
@@ -38,7 +46,8 @@ function  updateBigCup(){
     }else{
         percentage.style.visibility = 'visible'
         percentage.style.height = `${fullCups/totalCups * 330}px`
-        percentage.style.height = `${fullCups/totalCups * 100}%`
+        percentage.innerText= `${fullCups/totalCups * 100}%`
+
 
 
     }
